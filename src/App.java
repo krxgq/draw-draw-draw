@@ -1,14 +1,24 @@
+import models.Line;
+import models.Point;
+import rasterizers.Rasterizer;
+import rasterizers.TrivialLineRasterizer;
 import rasters.Raster;
 import rasters.RasterBufferedImage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serial;
 
 public class App {
 
     private final JPanel panel;
     private final Raster raster;
+    private MouseAdapter mouseAdapter;
+    private Point point;
+    private Rasterizer rasterizer;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new App(800, 600).start());
@@ -55,8 +65,39 @@ public class App {
         frame.pack();
         frame.setVisible(true);
 
+        rasterizer = new TrivialLineRasterizer(raster);
+
+        createAdapters();
+        panel.addMouseListener(mouseAdapter);
+        panel.addMouseMotionListener(mouseAdapter);
+
         panel.requestFocus();
         panel.requestFocusInWindow();
+    }
+
+    private void createAdapters() {
+        mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                point = new Point(e.getX(), e.getY());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Point point2 = new Point(e.getX(), e.getY());
+
+                Line line = new Line(point, point2, Color.cyan);
+
+                rasterizer.rasterize(line);
+
+                panel.repaint();
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+        };
     }
 
 }
