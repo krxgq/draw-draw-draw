@@ -12,8 +12,8 @@ public class RasterBufferedImage implements Raster {
         return img;
     }
 
-    public RasterBufferedImage(int width, int height) {
-        img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    public RasterBufferedImage(int width, int height, int imageType) {
+        img = new BufferedImage(width, height, imageType);
     }
 
     public void repaint(Graphics graphics) {
@@ -31,6 +31,7 @@ public class RasterBufferedImage implements Raster {
 
     @Override
     public void setPixel(int x, int y, int color) {
+        System.out.println("Setting pixel at (" + x + ", " + y + ") to color: 0x" + Integer.toHexString(color));
         img.setRGB(x, y, color);
     }
 
