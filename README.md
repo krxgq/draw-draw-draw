@@ -1,7 +1,7 @@
 # Drawing Application Documentation
 
 ## Overview
-This Java-based drawing application enables users to create and manipulate 2D graphics on an 800x600 canvas using Swing for the GUI. It supports drawing lines, polygons, squares, circles, and flood-filling areas with colors. The application uses a raster-based rendering system and provides tools for editing lines (e.g., splitting with an eraser) and adjusting line thickness and color.
+This Java-based drawing application enables users to create and manipulate 2D graphics on an 1120x600 canvas using Swing for the GUI. It supports drawing lines, polygons, squares, circles, and flood-filling areas with colors. The application uses a raster-based rendering system and provides tools for editing lines (e.g., splitting with an eraser) and adjusting line thickness and color.
 
 ## Key Components
 
